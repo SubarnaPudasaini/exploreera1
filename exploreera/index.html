@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Access Level Selection — ExploreEra</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        background-color: #24292f;
+        align-items: center;
+        background: linear-gradient(135deg, #0e1215, #1e00fe);
+      }
+
+      .choice-container {
+        background: rgba(255, 255, 255, 0.15);
+        padding: 40px;
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        animation: fadeIn 1s ease;
+      }
+
+      .title {
+        font-size: 24px;
+        font-weight: 600;
+        color: #fff;
+        text-align: center;
+      }
+
+      .select-access {
+        width: 220px;
+        padding: 12px 15px;
+        border-radius: 10px;
+        border: none;
+        outline: none;
+        font-size: 16px;
+        margin-top: 15px;
+        cursor: pointer;
+        transition: transform 0.2s;
+      }
+
+      .select-access:hover {
+        transform: scale(1.05);
+      }
+
+      .cards {
+        display: flex;
+        gap: 30px;
+      }
+
+      .choice {
+        background: #fff;
+        width: 160px;
+        padding: 25px;
+        border-radius: 15px;
+        text-align: center;
+        cursor: pointer;
+        transition: transform 0.3s, background 0.3s, color 0.3s;
+      }
+
+      .choice:hover {
+        transform: scale(1.1);
+        background: #4facfe;
+        color: #fff;
+      }
+
+      .choice i {
+        font-size: 50px;
+        margin-bottom: 15px;
+      }
+
+      .choice h3 {
+        margin-bottom: 5px;
+        font-size: 20px;
+      }
+
+      .choice p {
+        font-size: 14px;
+        color: #555;
+      }
+
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="choice-container">
+      <div class="title">Select Your Access Level</div>
+
+      <select class="select-access" id="accessSelect">
+        <option value="">Select Access Level</option>
+        <option value="user">User</option>
+        <option value="admin">Admin</option>
+      </select>
+
+      <div class="cards">
+        <div class="choice" id="userCard">
+          <i class="fa-solid fa-user"></i>
+          <h3>User</h3>
+          <p>Login as a normal user</p>
+        </div>
+
+        <div class="choice" id="adminCard">
+          <i class="fa-solid fa-user-shield"></i>
+          <h3>Admin</h3>
+          <p>Login as website admin</p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const accessSelect = document.getElementById("accessSelect");
+
+      document.getElementById("userCard").addEventListener("click", () => {
+        if (accessSelect.value === "user") {
+          window.location.href = "login_registration.html";
+        } else {
+          alert('Please select "User" in the access level dropdown first!');
+        }
+      });
+
+      document.getElementById("adminCard").addEventListener("click", () => {
+        if (accessSelect.value === "admin") {
+          window.location.href = "admin/admin_login.php";
+        } else {
+          alert('Please select "Admin" in the access level dropdown first!');
+        }
+      });
+    </script>
+  </body>
+</html>

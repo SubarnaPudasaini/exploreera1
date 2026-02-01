@@ -1,0 +1,246 @@
+[
+  {
+    "id": 1,
+    "name": "Hotel Yak & Yeti",
+    "location": "Kathmandu",
+    "image": "0001.png"
+  },
+  {
+    "id": 2,
+    "name": "Hyatt Regency Kathmandu",
+    "location": "Kathmandu",
+    "image": "0002.png"
+  },
+  {
+    "id": 3,
+    "name": "Marriott Kathmandu",
+    "location": "Kathmandu",
+    "image": "0003.png"
+  },
+  {
+    "id": 4,
+    "name": "Hotel Shanker",
+    "location": "Kathmandu",
+    "image": "0004.png"
+  },
+  {
+    "id": 5,
+    "name": "Aloft Kathmandu",
+    "location": "Thamel",
+    "image": "0005.png"
+  },
+  {
+    "id": 6,
+    "name": "Hotel Annapurna",
+    "location": "Kathmandu",
+    "image": "0006.png"
+  },
+  {
+    "id": 7,
+    "name": "Fairfield by Marriott",
+    "location": "Kathmandu",
+    "image": "0007.png"
+  },
+  {
+    "id": 8,
+    "name": "Kathmandu Guest House",
+    "location": "Thamel",
+    "image": "0008.png"
+  },
+  {
+    "id": 9,
+    "name": "Park Village Resort",
+    "location": "Budhanilkantha",
+    "image": "0009.png"
+  },
+  {
+    "id": 10,
+    "name": "Gokarna Forest Resort",
+    "location": "Kathmandu",
+    "image": "0010.png"
+  },
+
+  {
+    "id": 11,
+    "name": "Hotel Barahi",
+    "location": "Pokhara",
+    "image": "0011.png"
+  },
+  {
+    "id": 12,
+    "name": "Temple Tree Resort",
+    "location": "Pokhara",
+    "image": "0012.png"
+  },
+  {
+    "id": 13,
+    "name": "Hotel Pokhara Grande",
+    "location": "Pokhara",
+    "image": "0013.png"
+  },
+  {
+    "id": 14,
+    "name": "Waterfront Resort",
+    "location": "Pokhara",
+    "image": "0014.png"
+  },
+  {
+    "id": 15,
+    "name": "Hotel Lakefront",
+    "location": "Pokhara",
+    "image": "0015.png"
+  },
+  {
+    "id": 16,
+    "name": "Fish Tail Lodge",
+    "location": "Pokhara",
+    "image": "0016.png"
+  },
+  {
+    "id": 17,
+    "name": "Atithi Resort",
+    "location": "Pokhara",
+    "image": "0017.png"
+  },
+  {
+    "id": 18,
+    "name": "Hotel Mystic Mountain",
+    "location": "Nagarkot",
+    "image": "0018.png"
+  },
+  {
+    "id": 19,
+    "name": "Hotel Country Villa",
+    "location": "Nagarkot",
+    "image": "0019.png"
+  },
+  {
+    "id": 20,
+    "name": "Club Himalaya Resort",
+    "location": "Nagarkot",
+    "image": "0020.png"
+  },
+
+  {
+    "id": 21,
+    "name": "Tigerland Safari Resort",
+    "location": "Chitwan",
+    "image": "0021.png"
+  },
+  {
+    "id": 22,
+    "name": "Barahi Jungle Lodge",
+    "location": "Chitwan",
+    "image": "0022.png"
+  },
+  {
+    "id": 23,
+    "name": "Kasara Resort",
+    "location": "Chitwan",
+    "image": "0023.png"
+  },
+  {
+    "id": 24,
+    "name": "Seven Star Hotel",
+    "location": "Chitwan",
+    "image": "0024.png"
+  },
+  {
+    "id": 25,
+    "name": "Rhino Land Jungle Lodge",
+    "location": "Chitwan",
+    "image": "0025.png"
+  },
+
+  {
+    "id": 26,
+    "name": "Hotel Landmark",
+    "location": "Pokhara",
+    "image": "0026.png"
+  },
+  {
+    "id": 27,
+    "name": "Buddha Maya Garden",
+    "location": "Lumbini",
+    "image": "0027.png"
+  },
+  {
+    "id": 28,
+    "name": "Lumbini Hokke Hotel",
+    "location": "Lumbini",
+    "image": "0028.png"
+  },
+  {
+    "id": 29,
+    "name": "Hotel Crystal",
+    "location": "Butwal",
+    "image": "0029.png"
+  },
+  {
+    "id": 30,
+    "name": "Hotel Yellow Pagoda",
+    "location": "Kathmandu",
+    "image": "0030.png"
+  },
+
+  {
+    "id": 31,
+    "name": "Dwarika's Hotel",
+    "location": "Kathmandu",
+    "image": "0031.png"
+  },
+  {
+    "id": 32,
+    "name": "Hotel Tibet International",
+    "location": "Kathmandu",
+    "image": "0032.png"
+  },
+  {
+    "id": 33,
+    "name": "Mulberry Hotel",
+    "location": "Kathmandu",
+    "image": "0033.png"
+  },
+  {
+    "id": 34,
+    "name": "The Terraces Resort",
+    "location": "Kathmandu Valley",
+    "image": "0034.png"
+  },
+  {
+    "id": 35,
+    "name": "The Inn Patan",
+    "location": "Lalitpur",
+    "image": "0035.png"
+  },
+  {
+    "id": 36,
+    "name": "Godavari Village Resort",
+    "location": "Godavari",
+    "image": "0036.png"
+  },
+  {
+    "id": 37,
+    "name": "The Last Resort",
+    "location": "Sindhupalchowk",
+    "image": "0037.png"
+  },
+  {
+    "id": 38,
+    "name": "Hotel Iceland",
+    "location": "Pokhara",
+    "image": "0038.png"
+  },
+  {
+    "id": 39,
+    "name": "Hotel Himalaya",
+    "location": "Patan",
+    "image": "0039.png"
+  },
+  {
+    "id": 40,
+    "name": "Hotel Mirage Inn",
+    "location": "Lumbini",
+    "image": "0040.png"
+  }
+]

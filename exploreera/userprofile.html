@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>User Profile — ExploreEarth</title>
+
+    <style>
+      :root {
+        --bg: #f4f7fb;
+        --card: #ffffff;
+        --accent: #667eea;
+        --muted: #6b7280;
+        --border: #e6e9ef;
+        --radius: 12px;
+        font-family: "Poppins", sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+        transition: 0.3s ease;
+      }
+
+      body {
+        margin: 0;
+        background: linear-gradient(
+          90deg,
+          rgba(2, 0, 36, 1) 0%,
+          rgba(146, 39, 176, 1) 15%,
+          rgba(9, 9, 121, 1) 45%,
+          rgba(66, 138, 56, 1) 100%,
+          rgba(0, 212, 255, 1) 100%
+        );
+        color: #0f172a;
+        line-height: 1.4;
+      }
+
+      /* 🌟 Glowing Animated Container */
+      .container {
+        max-width: 900px;
+        margin: 50px auto;
+        padding: 20px;
+        border-radius: 30px;
+        margin-top: 15%;
+        animation: glowPulse 2.5s infinite ease-in-out;
+      }
+
+      @keyframes glowPulse {
+        0% {
+          box-shadow: 0 0 8px #00d4ff;
+          border: solid 8px #00d4ff;
+        }
+        50% {
+          box-shadow: 0 0 25px #ff0099;
+          border: solid 8px #ff0099;
+        }
+        100% {
+          box-shadow: 0 0 8px #00d4ff;
+          border: solid 8px #00d4ff;
+        }
+      }
+
+      /* ✨ Neon Border Animated Card */
+      .card {
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        gap: 24px;
+        align-items: flex-start;
+        padding: 24px;
+      }
+
+      .card::before {
+        content: "";
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        width: calc(100% + 4px);
+        height: calc(100% + 4px);
+        background: linear-gradient(
+          45deg,
+          #ff00c8,
+          #00d4ff,
+          #7dff00,
+          #ff8800,
+          #ff00c8
+        );
+        background-size: 400%;
+        animation: borderAnimation 6s linear infinite;
+        border-radius: 20px;
+        z-index: -1;
+      }
+
+      .card::after {
+        content: "";
+        position: absolute;
+        inset: 6px;
+        background: #d7d6bb;
+        border-radius: 16px;
+        z-index: 1;
+      }
+
+      .card > * {
+        position: relative;
+        z-index: 2;
+      }
+
+      @keyframes borderAnimation {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .left {
+        text-align: center;
+        width: 260px;
+      }
+
+      .avatar-wrap {
+        position: relative;
+        display: inline-block;
+      }
+
+      .avatar {
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 6px solid #fff;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Avatar Hover Dynamic Effect */
+      .avatar:hover {
+        transform: scale(1.08) rotate(3deg);
+        box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
+      }
+
+      .change-btn {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        background: var(--accent);
+        color: #fff;
+        border-radius: 50%;
+        width: 38px;
+        height: 38px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 3px solid #fff;
+        cursor: pointer;
+        font-size: 18px;
+      }
+
+      .change-btn:hover {
+        background: #ff0077;
+        transform: scale(1.15);
+      }
+
+      .meta {
+        margin-top: 12px;
+      }
+
+      .username {
+        font-size: 20px;
+        font-weight: 700;
+      }
+
+      .role {
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .right {
+        flex: 1;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+
+      .field {
+        background: #fbfdff;
+        border: 1px solid var(--border);
+        padding: 12px;
+        border-radius: 10px;
+      }
+
+      .field:hover {
+        background: #fffbd1;
+        border-color: #667eea;
+      }
+
+      .label {
+        font-size: 12px;
+        color: var(--muted);
+        margin-bottom: 6px;
+      }
+
+      .value {
+        font-weight: 600;
+      }
+
+      .value:hover {
+        color: #6a00ff;
+        letter-spacing: 0.5px;
+      }
+
+      input[type="text"],
+      input[type="email"] {
+        width: 100%;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid var(--border);
+      }
+
+      input:focus {
+        border-color: #667eea;
+        box-shadow: 0 0 8px rgba(102, 126, 234, 0.5);
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 16px;
+      }
+
+      /* Animated Buttons */
+      .btn {
+        padding: 10px 14px;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        font-weight: 600;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Animated Drawing Border on Hover */
+      .btn::before {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 0;
+        border: 2px solid transparent;
+        border-radius: 10px;
+        inset: 0;
+        transition: 0.4s ease;
+      }
+
+      .btn:hover::before {
+        width: 100%;
+        height: 100%;
+        border-color: currentColor;
+      }
+
+      .btn-primary {
+        background: var(--accent);
+        color: #fff;
+      }
+
+      .btn-primary:hover {
+        box-shadow: 0 0 12px #667eea;
+      }
+
+      .btn-ghost {
+        background: transparent;
+        border: 1px solid var(--border);
+      }
+
+      .btn-danger {
+        background: #ef4444;
+        color: #fff;
+      }
+
+      .btn-danger:hover {
+        background: #ff2222;
+        box-shadow: 0 0 12px red;
+      }
+
+      #BackBtn:hover {
+        background: #000;
+        color: white;
+      }
+
+      @media (max-width: 760px) {
+        .card {
+          flex-direction: column;
+          align-items: center;
+        }
+        .left {
+          width: 100%;
+        }
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="card">
+        <div class="left">
+          <div class="avatar-wrap">
+            <img
+              id="avatarImg"
+              class="avatar"
+              alt="Profile Photo"
+              src="https://cdn-icons-png.flaticon.com/512/847/847969.png"
+            />
+            <button id="changePhotoBtn" class="change-btn">✎</button>
+          </div>
+
+          <div class="meta">
+            <div id="displayName" class="username"></div>
+            <div class="role">Member • ExploreEarth</div>
+          </div>
+
+          <div class="logout-note">
+            Signed in as <span id="displayEmail"></span>
+          </div>
+        </div>
+
+        <div class="right">
+          <h2>Your Profile</h2>
+
+          <div class="grid">
+            <div class="field">
+              <div class="label">Username</div>
+              <div id="usernameView" class="value"></div>
+              <input id="usernameInput" class="hidden" type="text" />
+            </div>
+
+            <div class="field">
+              <div class="label">Email</div>
+              <div id="emailView" class="value"></div>
+              <input id="emailInput" class="hidden" type="email" />
+            </div>
+          </div>
+
+          <div class="actions">
+            <button id="editBtn" class="btn btn-ghost">Edit Profile</button>
+            <button id="saveBtn" class="btn btn-primary hidden">Save</button>
+            <button id="cancelBtn" class="btn hidden">Cancel</button>
+            <button id="logoutBtn" class="btn btn-danger">Log Out</button>
+            <button id="BackBtn" class="btn btn-danger">Back</button>
+          </div>
+
+          <input id="avatarInput" type="file" accept="image/*" class="hidden" />
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const user = JSON.parse(localStorage.getItem("loggedInUser"));
+
+      const usernameView = document.getElementById("usernameView");
+      const emailView = document.getElementById("emailView");
+      const displayName = document.getElementById("displayName");
+      const displayEmail = document.getElementById("displayEmail");
+      const avatarImg = document.getElementById("avatarImg");
+      const avatarInput = document.getElementById("avatarInput");
+      const changePhotoBtn = document.getElementById("changePhotoBtn");
+
+      const usernameInput = document.getElementById("usernameInput");
+      const emailInput = document.getElementById("emailInput");
+
+      const editBtn = document.getElementById("editBtn");
+      const saveBtn = document.getElementById("saveBtn");
+      const cancelBtn = document.getElementById("cancelBtn");
+      const logoutBtn = document.getElementById("logoutBtn");
+      const BackBtn = document.getElementById("BackBtn");
+
+      if (!user) {
+        alert("No user logged in! Redirecting to login page.");
+        window.location.href = "index.html";
+      } else {
+        renderProfile(user);
+      }
+
+      function renderProfile(u) {
+        usernameView.textContent = u.username;
+        emailView.textContent = u.email;
+        displayName.textContent = u.username;
+        displayEmail.textContent = u.email;
+        avatarImg.src =
+          u.avatar || "https://cdn-icons-png.flaticon.com/512/847/847969.png";
+
+        usernameInput.value = u.username;
+        emailInput.value = u.email;
+      }
+
+      editBtn.addEventListener("click", () => {
+        usernameView.classList.add("hidden");
+        emailView.classList.add("hidden");
+        usernameInput.classList.remove("hidden");
+        emailInput.classList.remove("hidden");
+
+        editBtn.classList.add("hidden");
+        saveBtn.classList.remove("hidden");
+        cancelBtn.classList.remove("hidden");
+      });
+
+      cancelBtn.addEventListener("click", () => {
+        usernameInput.value = user.username;
+        emailInput.value = user.email;
+        exitEdit();
+      });
+
+      saveBtn.addEventListener("click", () => {
+        const newUsername = usernameInput.value.trim();
+        const newEmail = emailInput.value.trim();
+
+        if (!newUsername || !newEmail.includes("@")) {
+          alert("Enter a valid username and email");
+          return;
+        }
+
+        user.username = newUsername;
+        user.email = newEmail;
+
+        const users = JSON.parse(localStorage.getItem("users")) || [];
+        const index = users.findIndex(
+          (u) => u.email === displayEmail.textContent
+        );
+
+        if (index !== -1) {
+          users[index].username = newUsername;
+          users[index].email = newEmail;
+          users[index].avatar = user.avatar || users[index].avatar;
+        }
+
+        localStorage.setItem("users", JSON.stringify(users));
+        localStorage.setItem("loggedInUser", JSON.stringify(user));
+
+        renderProfile(user);
+        exitEdit();
+      });
+
+      function exitEdit() {
+        usernameView.classList.remove("hidden");
+        emailView.classList.remove("hidden");
+
+        usernameInput.classList.add("hidden");
+        emailInput.classList.add("hidden");
+
+        editBtn.classList.remove("hidden");
+        saveBtn.classList.add("hidden");
+        cancelBtn.classList.add("hidden");
+      }
+
+      changePhotoBtn.addEventListener("click", () => avatarInput.click());
+
+      avatarInput.addEventListener("change", (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+
+        reader.onload = (ev) => {
+          const imageData = ev.target.result;
+
+          avatarImg.src = imageData;
+          user.avatar = imageData;
+
+          const users = JSON.parse(localStorage.getItem("users")) || [];
+          const index = users.findIndex((u) => u.email === user.email);
+
+          if (index !== -1) {
+            users[index].avatar = imageData;
+            localStorage.setItem("users", JSON.stringify(users));
+          }
+
+          localStorage.setItem("loggedInUser", JSON.stringify(user));
+        };
+
+        reader.readAsDataURL(file);
+      });
+
+      logoutBtn.addEventListener("click", () => {
+        localStorage.removeItem("loggedInUser");
+        alert("Logged out successfully!");
+        window.location.href = "index.html";
+      });
+
+      BackBtn.addEventListener("click", () => {
+        window.location.href = "homepage.html";
+      });
+    </script>
+  </body>
+</html>

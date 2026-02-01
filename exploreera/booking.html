@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Your Flight</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: "Poppins", sans-serif;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: linear-gradient(135deg, #3c7aff, #00d4ff);
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        animation: fadeIn 1s ease-in-out;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .container {
+        width: 450px;
+        padding: 30px;
+        background: rgba(255, 255, 255, 0.17);
+        border-radius: 20px;
+        backdrop-filter: blur(12px);
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        animation: slideUp 0.9s ease;
+      }
+
+      @keyframes slideUp {
+        from {
+          transform: translateY(30px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: white;
+        font-size: 28px;
+        letter-spacing: 1px;
+        animation: glow 2s infinite alternate;
+      }
+
+      @keyframes glow {
+        from {
+          text-shadow: 0 0 6px #fff;
+        }
+        to {
+          text-shadow: 0 0 12px #fff;
+        }
+      }
+
+      .input-box {
+        margin-bottom: 20px;
+      }
+
+      label {
+        color: white;
+        font-size: 15px;
+        display: block;
+        margin-bottom: 6px;
+      }
+
+      input {
+        width: 100%;
+        padding: 12px;
+        border-radius: 10px;
+        border: none;
+        outline: none;
+        background: rgba(255, 255, 255, 0.3);
+        color: white;
+        font-size: 16px;
+        transition: 0.4s ease;
+      }
+
+      input:focus {
+        background: rgba(255, 255, 255, 0.6);
+        transform: scale(1.04);
+        box-shadow: 0 0 12px white;
+      }
+
+      #button1 {
+        width: 100%;
+        padding: 14px;
+        font-size: 17px;
+        border: none;
+        border-radius: 10px;
+        margin-top: 10px;
+        background: white;
+        color: #0056ff;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.4s ease;
+      }
+      #button2 {
+        width: 100%;
+        padding: 14px;
+        font-size: 17px;
+        border: none;
+        border-radius: 10px;
+        margin-top: 10px;
+        background: rgb(245, 3, 3);
+        color: #000000;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.4s ease;
+      }
+      #button1:hover {
+        background: #0056ff;
+        color: white;
+        transform: scale(1.05);
+        box-shadow: 0 0 15px white;
+      }
+      #button2:hover {
+        background: #0056ff;
+        color: white;
+        transform: scale(1.05);
+        box-shadow: 0 0 15px white;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>Book Your Flight ✈️</h2>
+
+     <form action="book_flight.php" method="POST">
+  <div class="input-box">
+    <label>From</label>
+    <input type="text" name="from" required />
+  </div>
+
+  <div class="input-box">
+    <label>To</label>
+    <input type="text" name="to" required />
+  </div>
+
+  <div class="input-box">
+    <label>Date of Journey</label>
+    <input type="date" name="date" required />
+  </div>
+
+  <div class="input-box">
+    <label>No. of Passengers</label>
+    <input type="number" name="passengers" min="1" max="10" required />
+  </div>
+
+  <button type="submit" id="button1">Book Flight</button>
+</form>
+
+      </form>
+      <a href="homepage.html"><button type="back" id="button2">Back</button></a>
+    </div>
+  </body>
+</html>

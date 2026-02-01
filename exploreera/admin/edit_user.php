@@ -1,0 +1,13 @@
+<?php
+include "connect.php";
+
+$id    = $_POST['id'];
+$name  = $_POST['name'];
+$email = $_POST['email'];
+
+mysqli_query(
+    $conn,
+    "UPDATE users SET name='$name', email='$email' WHERE id='$id'"
+);
+
+echo json_encode(["success" => true]);

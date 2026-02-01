@@ -1,0 +1,185 @@
+<?php
+include "connect.php";
+
+// Get search keyword from input
+$searchLocation = $_GET['search'] ?? '';
+
+// Fetch hotels based on search input
+if ($searchLocation) {
+    $sql = "SELECT * FROM hotels WHERE location LIKE '%$searchLocation%' OR name LIKE '%$searchLocation%' ORDER BY name ASC";
+} else {
+    $sql = "SELECT * FROM hotels ORDER BY name ASC";
+}
+$result = mysqli_query($conn, $sql);
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ExploreEra-Hotel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f5f7fa;
+        }
+
+        header {
+            background: #0078ff;
+            color: #fff;
+            padding: 20px 40px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        header h2 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 20px;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .filters {
+            flex: 1 1 300px;
+            max-width: 300px;
+            padding: 20px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            height: fit-content;
+        }
+
+        .filters input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .hotel-list {
+            flex: 3 1 700px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+        }
+
+        .hotel-card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .hotel-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .hotel-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .hotel-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .hotel-info {
+            padding: 20px;
+        }
+
+        .hotel-info h3 {
+            margin: 0 0 10px 0;
+            font-size: 20px;
+            color: #0078ff;
+        }
+
+        .hotel-info p {
+            margin: 5px 0;
+            color: #555;
+        }
+
+        .price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #ff7a00;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background: #0078ff;
+            color: #fff;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #005bb5;
+        }
+
+        @media(max-width:900px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .filters,
+            .hotel-list {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+    <div class="container">
+        <div class="filters">
+            <h3>Search Hotels by Location or Name</h3>
+            <form method="GET">
+                <input type="text" name="search" placeholder="Enter city or hotel..." value="<?= htmlspecialchars($searchLocation) ?>" />
+            </form>
+        </div>
+
+        <div class="hotel-list">
+            <?php if (mysqli_num_rows($result) > 0): ?>
+                <?php while ($hotel = mysqli_fetch_assoc($result)): ?>
+                    <div class="hotel-card">
+                        <img src="<?= $hotel['image_url'] ?>" alt="<?= $hotel['name'] ?>" />
+                        <div class="hotel-info">
+                            <h3><?= $hotel['name'] ?></h3>
+                            <p><?= $hotel['location'] ?></p>
+                            <p><?= str_replace(',', ' • ', $hotel['amenities']) ?></p>
+                            <p class="price">Rs. <?= number_format($hotel['price']) ?> / night</p>
+                            <a href="details.php?hotel=<?= urlencode($hotel['name']) ?>" class="btn">View Details</a>
+                        </div>
+                    </div>
+                <?php endwhile; ?>
+            <?php else: ?>
+                <p style="grid-column:1/-1; text-align:center;">No hotels found for your search.</p>
+            <?php endif; ?>
+        </div>
+    </div>
+
+</body>
+
+</html>

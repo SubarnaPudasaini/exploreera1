@@ -1,0 +1,282 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#div.abc {
+  background-color: #1e293b;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #24292f;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  text-align: center;
+  animation: fadeIn 2s ease-in-out;
+}
+
+ul {
+  margin-top: 7px;
+  list-style: none;
+  text-align: right;
+  margin-right: 150px;
+  font-size: large;
+}
+
+li {
+  display: inline;
+  padding: 40px;
+}
+nav {
+  background: rgba(30, 41, 59, 0.9);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 60px;
+  box-shadow: 0 4px 12px rgba(0, 255, 255, 0.3);
+  position: sticky;
+  top: 0;
+  backdrop-filter: blur(10px);
+  z-index: 10;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.b {
+  text-decoration: none;
+  color: #f8fafc;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
+}
+
+.b:hover {
+  background-color: #00eaff;
+  color: #1e293b;
+  box-shadow: 0 0 10px #00eaff;
+}
+
+#a {
+  color: #06864a;
+  margin-left: 150px;
+}
+
+#b {
+  color: #15fa5d;
+  text-decoration: none;
+}
+
+footer {
+  background-color: #1e293b;
+}
+.services-hero {
+  max-width: 900px;
+  margin: 80px auto;
+  padding: 30px;
+  text-align: center;
+  background-color: rgba(30, 41, 59, 0.85);
+  border-radius: 20px;
+  color: #fff;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+}
+
+.services-hero h2 {
+  font-size: 34px;
+  color: #facc15;
+  margin-bottom: 10px;
+}
+
+.services-hero p {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.services-container {
+  max-width: 1000px;
+  margin: 40px auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.service-card {
+  background-color: rgba(15, 23, 42, 0.85);
+  padding: 25px;
+  border-radius: 20px;
+  text-align: center;
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+}
+
+.service-card img {
+  width: 70px;
+  margin-bottom: 15px;
+}
+
+.service-card h3 {
+  color: #00eaff;
+  margin-bottom: 10px;
+  font-size: 22px;
+}
+
+.service-card p {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+footer {
+  margin-top: 60px;
+  padding: 20px;
+  background-color: rgba(30, 41, 59, 0.85);
+  color: #81d830;
+  font-size: 14px;
+  text-align: center;
+}
+
+.c {
+  background-color: #1e293b;
+  color: #e2e8f0;
+  padding: 10px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-family: "raleway", sans-serif;
+}
+
+#section {
+  background-color: #557ab7;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  color: #1eca35;
+  padding: 100px 20px;
+  text-align: center;
+}
+
+.div2 {
+  margin-bottom: 30px;
+}
+
+#h1 {
+  color: #facc15;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.p1 {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.c:hover {
+  background-color: #00eaff;
+  color: #e2e8f0;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.div3 {
+  margin-bottom: 30px;
+}
+
+#h3 {
+  color: #facc15;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.social-links {
+  list-style: none;
+  padding: 0;
+  text-align: center;
+  margin-left: 180px;
+}
+
+.li {
+  display: inline-block;
+  margin: 0 15px;
+}
+
+.a1 {
+  color: #e2e8f0;
+  font-size: 18px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.a1:hover {
+  color: #facc15;
+}
+
+.div4 {
+  font-size: 14px;
+  padding-bottom: 0px;
+  margin-top: 210px;
+  margin-bottom: 0%;
+  color: #81d830;
+}
+
+.div6 {
+  max-width: 900px;
+  margin: 50px auto;
+  background: transparent;
+  border: 7px solid rgb(255, 0, 247);
+  padding: 20px;
+  margin-top: 130px;
+  border-radius: 0 70px 0 70px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  color: #333;
+}
+
+.sp1 {
+  margin: 20px 0;
+  padding: 20px;
+  background: #1e293b;
+  border: 7px solid rgb(234, 6, 6);
+  border-radius: 10px;
+  color: whitesmoke;
+}
+
+.aboutme {
+  font-family: "raleway", sans-serif;
+  margin-bottom: 10px;
+  color: rgb(0, 255, 0);
+}
+
+.paragraph {
+  font-family: "raleway", sans-serif;
+  color: #ffffff;
+  background-color: transparent;
+}
+
+.logo {
+  height: 40px;
+  width: 40px;
+  border: 2px solid whitesmoke;
+  border-radius: 50%;
+  margin-right: 30px;
+}
+
+#div7 {
+  background-color: #1e293b;
+  border: 2px aqua;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

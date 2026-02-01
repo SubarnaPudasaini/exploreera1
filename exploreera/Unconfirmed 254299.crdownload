@@ -1,0 +1,78 @@
+const defaultImage =
+  "https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg";
+
+const hotelsData = [
+  { name: "Hotel Yak & Yeti", place: "Kathmandu", image: "https://images.pexels.com/photos/261187/pexels-photo-261187.jpeg" },
+  { name: "Hyatt Regency", place: "Kathmandu", image: "https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg" },
+  { name: "Hotel Annapurna", place: "Kathmandu", image: "https://images.pexels.com/photos/1134176/pexels-photo-1134176.jpeg" },
+  { name: "Hotel Shanker", place: "Kathmandu", image: "https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg" },
+  { name: "Radisson Hotel", place: "Kathmandu", image: "https://images.pexels.com/photos/210604/pexels-photo-210604.jpeg" },
+
+  { name: "Pokhara Grande", place: "Pokhara", image: "https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg" },
+  { name: "Temple Tree Resort", place: "Pokhara", image: "https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg" },
+  { name: "Hotel Barahi", place: "Pokhara", image: "https://images.pexels.com/photos/189296/pexels-photo-189296.jpeg" },
+  { name: "Fish Tail Lodge", place: "Pokhara", image: "https://images.pexels.com/photos/1268855/pexels-photo-1268855.jpeg" },
+  { name: "Waterfront Resort", place: "Pokhara", image: "https://images.pexels.com/photos/2034335/pexels-photo-2034335.jpeg" },
+
+  { name: "Jagatpur Lodge", place: "Chitwan", image: "https://images.pexels.com/photos/261045/pexels-photo-261045.jpeg" },
+  { name: "Tigerland Safari", place: "Chitwan", image: "https://images.pexels.com/photos/338504/pexels-photo-338504.jpeg" },
+  { name: "Green Park Resort", place: "Chitwan", image: "https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg" },
+  { name: "Meghauli Serai", place: "Chitwan", image: "https://images.pexels.com/photos/262048/pexels-photo-262048.jpeg" },
+  { name: "Landmark Forest Park", place: "Chitwan", image: "https://images.pexels.com/photos/2034335/pexels-photo-2034335.jpeg" },
+
+  { name: "Lumbini Palace Resort", place: "Lumbini", image: "https://images.pexels.com/photos/210604/pexels-photo-210604.jpeg" },
+  { name: "Hotel Kanthak", place: "Lumbini", image: "https://images.pexels.com/photos/189296/pexels-photo-189296.jpeg" },
+  { name: "Buddha Maya Garden", place: "Lumbini", image: "https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg" },
+  { name: "Hotel Ananda Inn", place: "Lumbini", image: "https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg" },
+  { name: "Siddhartha Guest House", place: "Lumbini", image: "https://images.pexels.com/photos/261187/pexels-photo-261187.jpeg" },
+
+  { name: "Mustang Eco Resort", place: "Mustang", image: "https://images.pexels.com/photos/1134176/pexels-photo-1134176.jpeg" },
+  { name: "Mystic Mountain Lodge", place: "Mustang", image: "https://images.pexels.com/photos/338504/pexels-photo-338504.jpeg" },
+  { name: "Himalayan Heritage Hotel", place: "Mustang", image: "https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg" },
+  { name: "Annapurna Guest House", place: "Mustang", image: "https://images.pexels.com/photos/2034335/pexels-photo-2034335.jpeg" },
+  { name: "Lo Manthang Resort", place: "Mustang", image: "https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg" }
+];
+
+let selectedHotel = "";
+const hotelList = document.getElementById("hotelList");
+
+function displayHotels(list) {
+  hotelList.innerHTML = "";
+  list.forEach((hotel) => {
+    hotelList.innerHTML += `
+      <div class="hotel-card">
+        <img src="${hotel.image}" onerror="this.src='${defaultImage}'">
+        <h3>${hotel.name}</h3>
+        <p>${hotel.place}</p>
+        <button onclick="openBooking('${hotel.name}')">Book Now</button>
+      </div>
+    `;
+  });
+}
+
+displayHotels(hotelsData);
+
+function filterHotels() {
+  const city = document.getElementById("cityFilter").value;
+  if (city === "All") {
+    displayHotels(hotelsData);
+  } else {
+    displayHotels(hotelsData.filter(h => h.place === city));
+  }
+}
+
+function openBooking(hotelName) {
+  selectedHotel = hotelName;
+  document.getElementById("bookingBox").style.display = "block";
+  document.getElementById("bookingHotelName").innerText = hotelName;
+}
+
+function confirmBooking() {
+  const days = document.getElementById("daysInput").value;
+  if (!days || days <= 0) return;
+
+  alert("Booking Confirmed\nHotel: " + selectedHotel + "\nDays: " + days);
+
+  document.getElementById("daysInput").value = "";
+  document.getElementById("bookingBox").style.display = "none";
+}

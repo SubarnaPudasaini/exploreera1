@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ExploreEra-Services</title>
+    <link rel="stylesheet" href="services.css" />
+  </head>
+  <body>
+    <nav>
+      <h1 id="a"><a href="homepage.html" id="b">N-ExploreEra 🌏</a></h1>
+      <ul>
+        <a class="b" href="homepage.html"><li>Home</li></a>
+        <a class="b" href="aboutus.html"><li>About</li></a>
+        <a class="b" href="services.html"><li>Services</li></a>
+        <a class="b" href="contact.html"><li>Contact Us</li></a>
+      </ul>
+      <a href="userprofile.html" id="profileLink" title="Profile">
+        <img
+          id="profileImg"
+          src="https://cdn-icons-png.flaticon.com/512/847/847969.png"
+          alt="Profile"
+          class="logo"
+      /></a>
+    </nav>
+    <section class="services-hero">
+      <h2>Our Services</h2>
+      <p>
+        ExploreEarth provides smart, reliable, and easy-to-use travel solutions
+        to help you explore Nepal with confidence and comfort. Here’s what we
+        offer to our users:
+      </p>
+    </section>
+
+    <!-- Service Cards -->
+    <div class="services-container">
+      <!-- Service 1 -->
+      <div class="service-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/854/854894.png" />
+        <h3>Destination Finder</h3>
+        <p>
+          Discover all 77 districts of Nepal, including top travel places,
+          hidden gems, and beautiful tourist attractions with detailed guides.
+        </p>
+      </div>
+
+      <!-- Service 2 -->
+      <div class="service-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/684/684908.png" />
+        <h3>Flight Schedule Viewer</h3>
+        <p>
+          Check upcoming flight arrivals and departures from major airports in
+          Nepal — updated and real-time data.
+        </p>
+      </div>
+
+      <!-- Service 3 -->
+      <div class="service-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/744/744465.png" />
+        <h3>Hotel Suggestions</h3>
+        <p>
+          Get recommended hotels based on your location, budget, and travel
+          plan. No booking — only suggestions for easy decision-making.
+        </p>
+      </div>
+
+      <!-- Service 4 -->
+      <div class="service-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/3103/3103446.png" />
+        <h3>Car Booking Assistance</h3>
+        <p>
+          We guide you to the best car rental and travel agencies near your
+          destination for a smooth travel experience.
+        </p>
+      </div>
+
+      <!-- Service 5 -->
+      <div class="service-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/992/992651.png" />
+        <h3>Travel Planner</h3>
+        <p>
+          Create a personalized travel plan with date, destination, and
+          activities all managed inside the platform.
+        </p>
+      </div>
+
+      <!-- Service 6 -->
+      <div class="service-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/747/747376.png" />
+        <h3>Search Anything Instantly</h3>
+        <p>
+          Use our integrated search system to instantly explore districts,
+          hotels, locations, and travel details within seconds.
+        </p>
+      </div>
+    </div>
+    <script>
+      const user = JSON.parse(localStorage.getItem("loggedInUser"));
+      const profileImg = document.getElementById("profileImg");
+      const profileLink = document.getElementById("profileLink");
+
+      if (user) {
+        if (user.avatar) profileImg.src = user.avatar;
+        if (user.username) profileLink.title = user.username; // dynamic tooltip
+      }
+    </script>
+    <div class="footer-bottom">
+      <p>&copy; 2025 ExploreEra. All rights reserved.</p>
+    </div>
+    <!-- Footer CSS -->
+    <style>
+      footer {
+        background-color: #222;
+        color: #fff;
+        padding: 40px 0 20px;
+        font-family: "Poppins", sans-serif;
+      }
+
+      .footer-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        max-width: 1200px;
+        margin: auto;
+      }
+
+      .footer-section {
+        flex: 1 1 200px;
+        margin: 10px;
+      }
+
+      .footer-section h3 {
+        margin-bottom: 15px;
+        font-size: 18px;
+        color: #ff9800;
+      }
+
+      .footer-section ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .footer-section ul li {
+        margin-bottom: 10px;
+      }
+
+      .footer-section ul li a {
+        color: #fff;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .footer-section ul li a:hover {
+        color: #ff9800;
+      }
+    </style>
+  </body>
+</html>

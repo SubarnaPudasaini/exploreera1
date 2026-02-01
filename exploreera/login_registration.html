@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Travel Login • ExploreEra</title>
+
+    <!-- GOOGLE FONTS -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- ICONS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(#a8d8ff, #dff3ff);
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* CLOUDS ANIMATION */
+      .cloud {
+        position: absolute;
+        width: 350px;
+        height: 230px;
+        opacity: 1;
+        border-radius: 6px;
+        animation: moveClouds 30s linear infinite;
+      }
+
+      @keyframes moveClouds {
+        from {
+          transform: translateX(-400px);
+        }
+        to {
+          transform: translateX(1500px);
+        }
+      }
+
+      .cloud:nth-child(1) {
+        top: 10%;
+        animation-duration: 40s;
+        animation-delay: 0s;
+        left: -400px;
+      }
+      .cloud:nth-child(2) {
+        top: 40%;
+        animation-duration: 32s;
+        animation-delay: 4s;
+        left: -500px;
+      }
+      .cloud:nth-child(3) {
+        top: 70%;
+        animation-duration: 50s;
+        animation-delay: 8s;
+        left: -600px;
+      }
+
+      .cloud:nth-child(4) {
+        top: 20%;
+        animation-duration: 36s;
+        animation-delay: 12s;
+        opacity: 0.95;
+        left: -450px;
+      }
+      .cloud:nth-child(5) {
+        top: 55%;
+        animation-duration: 28s;
+        animation-delay: 16s;
+        opacity: 0.9;
+        left: -700px;
+      }
+      .cloud:nth-child(6) {
+        top: 80%;
+        animation-duration: 33s;
+        animation-delay: 20s;
+        opacity: 0.85;
+        left: -550px;
+      }
+      .cloud:nth-child(7) {
+        top: 30%;
+        animation-duration: 42s;
+        animation-delay: 24s;
+        opacity: 0.92;
+        left: -620px;
+      }
+      .cloud:nth-child(8) {
+        top: 5%;
+        animation-duration: 25s;
+        animation-delay: 28s;
+        opacity: 0.88;
+        left: -500px;
+      }
+
+      /* FORM CONTAINER */
+      .container {
+        width: 420px;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 80, 150, 0.25);
+        overflow: hidden;
+        position: relative;
+        z-index: 99;
+        animation: fadeIn 0.9s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .forms {
+        display: flex;
+        width: 200%;
+        transition: 0.6s ease-in-out;
+      }
+
+      form {
+        width: 50%;
+        padding: 40px 35px;
+      }
+
+      h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #0077cc;
+        font-size: 28px;
+        font-weight: 600;
+      }
+
+      .input-box {
+        position: relative;
+        margin-bottom: 18px;
+      }
+
+      .input-box i {
+        position: absolute;
+        top: 50%;
+        left: 12px;
+        transform: translateY(-50%);
+        color: #0077cc;
+      }
+
+      .input-box input {
+        width: 100%;
+        padding: 12px 40px;
+        border: 2px solid #b3d7ff;
+        border-radius: 10px;
+        outline: none;
+        background: #eef7ff;
+        color: #003d66;
+        font-size: 14px;
+        transition: 0.3s;
+      }
+
+      .input-box input:focus {
+        border-color: #0077cc;
+        background: #e3f2ff;
+      }
+
+      .btn {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 10px;
+        background: #0077cc;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .btn:hover {
+        background: #005fa3;
+      }
+
+      .switch {
+        margin-top: 15px;
+        text-align: center;
+        color: #005fa3;
+      }
+
+      .switch a {
+        color: #004c91;
+        font-weight: bold;
+        text-decoration: none;
+      }
+
+      .error {
+        color: #ff4d4d;
+        text-align: center;
+        font-size: 14px;
+        margin-bottom: 10px;
+      }
+
+      /* ICON DECORATION */
+      .plane {
+        position: absolute;
+        top: -30px;
+        right: -20px;
+        font-size: 60px;
+        color: #cfe9ff;
+        transform: rotate(20deg);
+      }
+
+      @media (max-width: 480px) {
+        .container {
+          width: 92%;
+        }
+        form {
+          padding: 30px 25px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- CLOUDS IMAGES OMITTED FOR BREVITY -->
+    <img
+      src="https://data.agatetravel.com/images/photogallery/2020/rara-lake-nepal.jpg"
+      class="cloud"
+    />
+    <img
+      src="https://www.himalayanwonders.com/siteblog/wp-content/uploads/2021/02/boudhanath-stupa-at-sunset.jpg"
+      class="cloud"
+    />
+    <img
+      src="https://www.relaxgetaways.com/uploads/media/Most%20Visited%20Places%20in%20Nepal/Most%20Visited%20Places%20in%20Nepal%20Intero.jpg"
+      class="cloud"
+    />
+
+    <img
+      src="https://cdn-hhakh.nitrocdn.com/ZUiKsAhBWIVCiBCqPvDXHWWyTmLVUksX/assets/images/optimized/rev-32520b9/nepalecoadventure.com/wp-content/uploads/2025/08/Naturally-Beautiful-Places-in-Nepal-848x571.jpg"
+      class="cloud"
+    />
+    <img
+      src="https://lifehimalayatrekking.com/wp-content/uploads/2023/12/Tilicho-Lake.webp"
+      class="cloud"
+    />
+    <img
+      src="https://cms.holidaystonepal.in/media/Blogs/Top-10-Places-to-Visit-in-Nepal-with-family/top-10-places-to-visit-in-nepal-with-family.png"
+      class="cloud"
+    />
+    <img
+      src="https://www.holidify.com/images/cmsuploads/compressed/sarangkot_20180710001134.jpg"
+      class="cloud"
+    />
+    <img
+      src="https://www.ambitionhimalaya.com/wp-content/uploads/2022/05/Kathmandu-day-tour.jpg"
+      class="cloud"
+    />
+    <div class="container">
+      <i class="fa-solid fa-plane plane"></i>
+
+      <div class="forms" id="forms">
+        <!-- LOGIN FORM -->
+        <form id="loginForm" action="login.php" method="GET">
+          <h2>Welcome Back</h2>
+          <div class="error" id="loginError"></div>
+
+          <div class="input-box">
+            <i class="fa-solid fa-envelope"></i>
+            <input type="email" name="email" placeholder="Email" required />
+          </div>
+
+          <div class="input-box">
+            <i class="fa-solid fa-lock"></i>
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              required
+            />
+          </div>
+
+          <button class="btn" type="submit">Login</button>
+
+          <div class="switch">
+            No account? <a href="#" id="showRegister">Register</a>
+          </div>
+        </form>
+
+        <!-- REGISTER FORM -->
+        <form id="registerForm" action="register.php" method="GET">
+          <h2>Create Account</h2>
+          <div class="error" id="registerError"></div>
+
+          <div class="input-box">
+            <i class="fa-solid fa-user"></i>
+            <input
+              type="text"
+              name="username"
+              placeholder="Username"
+              required
+            />
+          </div>
+
+          <div class="input-box">
+            <i class="fa-solid fa-envelope"></i>
+            <input type="email" name="email" placeholder="Email" required />
+          </div>
+
+          <div class="input-box">
+            <i class="fa-solid fa-lock"></i>
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              required
+            />
+          </div>
+
+          <button class="btn" type="submit">Register</button>
+
+          <div class="switch">
+            Already have an account? <a href="#" id="showLogin">Login</a>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      const forms = document.getElementById("forms");
+      document.getElementById("showRegister").onclick = () => {
+        forms.style.transform = "translateX(-50%)";
+      };
+      document.getElementById("showLogin").onclick = () => {
+        forms.style.transform = "translateX(0%)";
+      };
+      // Removed all localStorage JS
+    </script>
+  </body>
+</html>

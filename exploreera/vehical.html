@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Select Vehicle - ExploreEra</title>
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #0f172a, #020617);
+        color: #fff;
+        text-align: center;
+        padding: 30px 15px;
+      }
+      nav {
+        background: rgba(30, 41, 59, 0.9);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 60px;
+        box-shadow: 0 4px 12px rgba(0, 255, 255, 0.3);
+        position: sticky;
+        top: 0;
+        backdrop-filter: blur(10px);
+        z-index: 10;
+        animation: fadeIn 1s ease-in-out;
+      }
+
+      #a {
+        color: #06864a;
+      }
+
+      #b {
+        color: #15fa5d;
+        text-decoration: none;
+        font-size: 26px;
+        font-weight: bold;
+      }
+
+      ul {
+        list-style: none;
+        display: flex;
+        gap: 25px;
+        font-size: 18px;
+      }
+
+      li {
+        display: inline-block;
+      }
+      nav ul li a:hover,
+      nav ul li a.active {
+        color: black;
+        background-color: #00eaff;
+      }
+      .b {
+        text-decoration: none;
+        color: #f8fafc;
+        padding: 8px 12px;
+        border-radius: 8px;
+        transition: all 0.3s ease-in-out;
+      }
+
+      .b:hover {
+        background-color: #00eaff;
+        color: #1e293b;
+        box-shadow: 0 0 10px #00eaff;
+      }
+
+      /* 👤 Profile image */
+      .logosubarna {
+        height: 45px;
+        width: 45px;
+        border: 2px solid #00eaff;
+        border-radius: 50%;
+        transition: transform 0.3s ease, border-color 0.3s ease;
+      }
+
+      .logosubarna:hover {
+        transform: scale(1.1);
+        border-color: #15fa5d;
+      }
+
+      .vehicle-section {
+        max-width: 1000px;
+        margin: 60px auto;
+        padding: 30px;
+      }
+      .vehicle-section h2 {
+        font-size: 32px;
+        margin-bottom: 10px;
+        color: #facc15;
+      }
+      .vehicle-section p {
+        margin-bottom: 40px;
+        color: #cbd5f5;
+      }
+      .vehicle-cards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+      }
+      .vehicle-card {
+        width: 180px;
+        padding: 20px;
+        border-radius: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+        background: #1e293b;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+      }
+      .vehicle-card img {
+        width: 60px;
+        margin-bottom: 10px;
+      }
+      .vehicle-card:hover {
+        transform: translateY(-8px) scale(1.1);
+        box-shadow: 0 0 30px #00eaff;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="div.abc">
+      <nav>
+        <h1 id="a"><a href="homepage.html" id="b">N-ExploreEra 🌏</a></h1>
+        <ul>
+          <a class="b" href="homepage.html"><li>Home</li></a>
+          <a class="b" href="aboutus.html"><li>About</li></a>
+          <a class="b" href="services.html"><li>Services</li></a>
+          <a class="b" href="contact.html"><li>Contact Us</li></a>
+        </ul>
+        <a href="userprofile.html" id="profileLink" title="Profile">
+          <img
+            id="profileImg"
+            src="https://cdn-icons-png.flaticon.com/512/847/847969.png"
+            alt="Profile"
+            class="logosubarna"
+          />
+        </a>
+      </nav>
+    </div>
+
+    <section class="vehicle-section">
+      <h2>Select Your Transportation</h2>
+      <p>Choose the best way to travel according to your comfort and budget</p>
+      <div class="vehicle-cards">
+        <div class="vehicle-card" data-vehicle="Car">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/741/741407.png"
+          /><span>Car</span>
+        </div>
+        <div class="vehicle-card" data-vehicle="Bus">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/3448/3448339.png"
+          /><span>Bus</span>
+        </div>
+        <div class="vehicle-card" data-vehicle="Taxi">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/3202/3202926.png"
+          /><span>Taxi</span>
+        </div>
+        <div class="vehicle-card" data-vehicle="Train">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/3448/3448612.png"
+          /><span>Train</span>
+        </div>
+        <div class="vehicle-card" data-vehicle="Van">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/741/741412.png"
+          /><span>Van</span>
+        </div>
+        <div class="vehicle-card" data-vehicle="Bike">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/998/998370.png"
+          /><span>Bike</span>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      const cards = document.querySelectorAll(".vehicle-card");
+      cards.forEach((card) => {
+        card.addEventListener("click", () => {
+          const vehicle = card.getAttribute("data-vehicle");
+          // Redirect to booking page with vehicle
+          window.location.href = `vehical_booking.php?vehicle=${vehicle}`;
+        });
+      });
+    </script>
+  </body>
+</html>

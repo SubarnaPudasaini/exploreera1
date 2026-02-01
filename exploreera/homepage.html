@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ExploreEarth</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      #123edf {
+        background: #00eaff;
+      }
+      /* Autocomplete Suggestions */
+      #suggestions {
+        background: #fff;
+        color: #000;
+        border: 1px solid #00eaff;
+        max-height: 150px;
+        overflow-y: auto;
+        position: absolute;
+        width: 200px;
+        border-radius: 5px;
+        z-index: 100;
+      }
+      /* Hotel Cards */
+      .hotel-card {
+        background: rgba(134, 7, 38, 0.85);
+        padding: 15px;
+        margin: 10px 0;
+        border-radius: 10px;
+        color: #fff;
+      }
+      .hotel-card img {
+        border-radius: 5px;
+        margin: 5px 0;
+      }
+      .hotel-card button {
+        background: #00eaff;
+        color: #f7004e;
+        padding: 8px 12px;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+      }
+      .hotel-card button:hover {
+        background: #06b6d4;
+        color: white;
+      }
+
+      /* Hover Zoom Effect */
+      .hotel-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer; /* pointer on hover */
+      }
+
+      .hotel-card:hover {
+        transform: scale(1.05); /* slightly zoom */
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4); /* subtle shadow */
+      }
+      #a12 {
+        text-align: left;
+        font-size: 20px;
+        margin-left: 10px;
+      }
+      #a13 {
+        background-color: black;
+        counter-reset: white;
+        margin-top: 100px;
+        height: 75px;
+        padding: 20px;
+      }
+      .main-footer {
+        background: #0f172a;
+        color: #cbd5f5;
+        padding: 70px 20px 50px;
+      }
+
+      .footer-container {
+        max-width: 1100px;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        text-align: center;
+      }
+
+      .footer-brand h3 {
+        font-size: 26px;
+        color: #00eaff;
+        margin-bottom: 15px;
+      }
+
+      .footer-brand p {
+        max-width: 600px;
+        margin: auto;
+        line-height: 1.8;
+        font-size: 15px;
+        opacity: 0.9;
+      }
+
+      .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: 35px;
+        flex-wrap: wrap;
+      }
+
+      .footer-links a {
+        color: #cbd5f5;
+        text-decoration: none;
+        font-size: 15px;
+        transition: color 0.3s;
+      }
+
+      .footer-links a:hover {
+        color: #00eaff;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="div.abc">
+      <nav>
+        <h1 id="a"><a href="homepage.html" id="b">ExploreEra 🌏</a></h1>
+        <ul>
+          <a class="b" href="homepage.html"><li>Home</li></a>
+          <a class="b" href="aboutus.html"><li>About</li></a>
+          <a class="b" href="services.html"><li>Services</li></a>
+          <a class="b" href="contact.html"><li>Contact Us</li></a>
+        </ul>
+        <a href="userprofile.html" id="profileLink" title="Profile">
+          <img
+            id="profileImg"
+            src="https://cdn-icons-png.flaticon.com/512/847/847969.png"
+            alt="Profile"
+            class="logosubarna"
+          />
+        </a>
+      </nav>
+    </div>
+
+    <section class="Section">
+      <h2 id="h2">Made to Travel</h2>
+      <div class="div1">
+        <div class="div10">
+          <p id="qw">
+            <a href="booking.html"
+              ><button id="button4" class="bbb">Flight ✈️</button></a
+            >
+            <a href="vehical.html">
+              <button id="button5" class="bbb">Vehicals</button></a
+            >
+            <a href="hotel/hotel.php"
+              ><button id="button6" class="bbb">Hotals🏨</button></a
+            >
+          </p>
+        </div>
+        <br />
+        <div id="content-area" class="div1">
+          <h2 id="content-title">Welcome to ExploreEarth 🌏</h2>
+          <p id="content-text">
+            Choose a travel option above to explore the world your way.
+          </p>
+        </div>
+      </div>
+    </section>
+    <div id="a13">
+      Your summer of soccer Save on match travel across flights, stays, and
+      more. See all deals
+    </div>
+    <br /><br /><br />
+    <p id="a12">Our last deals:</p>
+    <br />
+
+    <!-- Last Deals Section -->
+    <div id="123edf">
+      <section id="last-deals" style="padding: 5px">
+        <div
+          style="
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: center;
+          "
+        >
+          <!-- Hotel Card Example -->
+          <div
+            class="hotel-card"
+            style="
+              flex: 1 1 250px;
+              max-width: 300px;
+              background: rgba(135, 0, 40, 0.85);
+              padding: 15px;
+              border-radius: 10px;
+              color: #fff;
+            "
+          >
+            <img
+              src="https://images.pexels.com/photos/259588/pexels-photo-259588.jpeg"
+              alt="Hyatt Regency Kathmandu"
+              style="
+                width: 100%;
+                height: 180px;
+                object-fit: cover;
+                border-radius: 8px;
+                margin-bottom: 10px;
+              "
+            />
+            <h3 style="margin: 0 0 5px 0; font-size: 18px">
+              Hyatt Regency Kathmandu
+            </h3>
+            <p style="margin: 0; font-size: 16px">Booked at NPR 15,000</p>
+          </div>
+
+          <div
+            class="hotel-card"
+            style="
+              flex: 1 1 250px;
+              max-width: 300px;
+              background: rgba(135, 0, 40, 0.85);
+              padding: 15px;
+              border-radius: 10px;
+              color: #fff;
+            "
+          >
+            <img
+              src="https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg"
+              alt="Hotel Annapurna"
+              style="
+                width: 100%;
+                height: 180px;
+                object-fit: cover;
+                border-radius: 8px;
+                margin-bottom: 10px;
+              "
+            />
+            <h3 style="margin: 0 0 5px 0; font-size: 18px">Hotel Annapurna</h3>
+            <p style="margin: 0; font-size: 16px">Booked at NPR 12,500</p>
+          </div>
+
+          <div
+            class="hotel-card"
+            style="
+              flex: 1 1 250px;
+              max-width: 300px;
+              background: rgba(135, 0, 40, 0.85);
+              padding: 15px;
+              border-radius: 10px;
+              color: #fff;
+            "
+          >
+            <img
+              src="https://images.pexels.com/photos/14012107/pexels-photo-14012107.jpeg"
+              alt="Hotel Shanker"
+              style="
+                width: 100%;
+                height: 180px;
+                object-fit: cover;
+                border-radius: 8px;
+                margin-bottom: 10px;
+              "
+            />
+            <h3 style="margin: 0 0 5px 0; font-size: 18px">Hotel Shanker</h3>
+            <p style="margin: 0; font-size: 16px">Booked at NPR 13,000</p>
+          </div>
+
+          <div
+            class="hotel-card"
+            style="
+              flex: 1 1 250px;
+              max-width: 300px;
+              background: rgba(135, 0, 40, 0.85);
+              padding: 15px;
+              border-radius: 10px;
+              color: #fff;
+            "
+          >
+            <img
+              src="https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg"
+              alt="Fairfield by Marriott"
+              style="
+                width: 100%;
+                height: 180px;
+                object-fit: cover;
+                border-radius: 8px;
+                margin-bottom: 10px;
+              "
+            />
+            <h3 style="margin: 0 0 5px 0; font-size: 18px">
+              Fairfield by Marriott
+            </h3>
+            <p style="margin: 0; font-size: 16px">Booked at NPR 13,500</p>
+          </div>
+
+          <div
+            class="hotel-card"
+            style="
+              flex: 1 1 250px;
+              max-width: 300px;
+              background: rgba(135, 0, 40, 0.85);
+              padding: 15px;
+              border-radius: 10px;
+              color: #fff;
+            "
+          >
+            <img
+              src="https://images.pexels.com/photos/259588/pexels-photo-259588.jpeg"
+              alt="Aloft Kathmandu"
+              style="
+                width: 100%;
+                height: 180px;
+                object-fit: cover;
+                border-radius: 8px;
+                margin-bottom: 10px;
+              "
+            />
+            <h3 style="margin: 0 0 5px 0; font-size: 18px">Aloft Kathmandu</h3>
+            <p style="margin: 0; font-size: 16px">Booked at NPR 11,000</p>
+          </div>
+
+          <!-- Atithi Resort -->
+          <div
+            class="hotel-card"
+            style="
+              flex: 1 1 250px;
+              max-width: 300px;
+              background: rgba(72, 3, 235, 0.85);
+              padding: 15px;
+              border-radius: 10px;
+              color: #fff;
+            "
+          >
+            <img
+              src="https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg"
+              alt="Atithi Resort"
+              style="
+                width: 100%;
+                height: 180px;
+                object-fit: cover;
+                border-radius: 8px;
+                margin-bottom: 10px;
+              "
+            />
+            <h3 style="margin: 0 0 5px 0; font-size: 18px">Atithi Resort</h3>
+            <p style="margin: 0; font-size: 16px">Booked at NPR 13,000</p>
+          </div>
+
+          <!-- Bandipur Mountain Lodge -->
+          <div
+            class="hotel-card"
+            style="
+              flex: 1 1 250px;
+              max-width: 300px;
+              background: rgba(72, 3, 235, 0.85);
+              padding: 15px;
+              border-radius: 10px;
+              color: #fff;
+            "
+          >
+            <img
+              src="https://images.pexels.com/photos/271615/pexels-photo-271615.jpeg"
+              alt="Bandipur Mountain Lodge"
+              style="
+                width: 100%;
+                height: 180px;
+                object-fit: cover;
+                border-radius: 8px;
+                margin-bottom: 10px;
+              "
+            />
+            <h3 style="margin: 0 0 5px 0; font-size: 18px">
+              Bandipur Mountain Lodge
+            </h3>
+            <p style="margin: 0; font-size: 16px">Booked at NPR 8,000</p>
+          </div>
+
+          <!-- Barahi Jungle Lodge -->
+          <div
+            class="hotel-card"
+            style="
+              flex: 1 1 250px;
+              max-width: 300px;
+              background: rgba(72, 3, 235, 0.85);
+              padding: 15px;
+              border-radius: 10px;
+              color: #fff;
+            "
+          >
+            <img
+              src="https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg"
+              alt="Barahi Jungle Lodge"
+              style="
+                width: 100%;
+                height: 180px;
+                object-fit: cover;
+                border-radius: 8px;
+                margin-bottom: 10px;
+              "
+            />
+            <h3 style="margin: 0 0 5px 0; font-size: 18px">
+              Barahi Jungle Lodge
+            </h3>
+            <p style="margin: 0; font-size: 16px">Booked at NPR 14,500</p>
+          </div>
+
+          <!-- Bodhi Redsun -->
+          <div
+            class="hotel-card"
+            style="
+              flex: 1 1 250px;
+              max-width: 300px;
+              background: rgba(72, 3, 235, 0.85);
+              padding: 15px;
+              border-radius: 10px;
+              color: #fff;
+            "
+          >
+            <img
+              src="https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg"
+              alt="Bodhi Redsun"
+              style="
+                width: 100%;
+                height: 180px;
+                object-fit: cover;
+                border-radius: 8px;
+                margin-bottom: 10px;
+              "
+            />
+            <h3 style="margin: 0 0 5px 0; font-size: 18px">Bodhi Redsun</h3>
+            <p style="margin: 0; font-size: 16px">Booked at NPR 12,000</p>
+          </div>
+
+          <!-- Club Himalaya Resort -->
+          <div
+            class="hotel-card"
+            style="
+              flex: 1 1 250px;
+              max-width: 300px;
+              background: rgba(72, 3, 235, 0.85);
+              padding: 15px;
+              border-radius: 10px;
+              color: #fff;
+            "
+          >
+            <img
+              src="https://images.pexels.com/photos/14012107/pexels-photo-14012107.jpeg"
+              alt="Club Himalaya Resort"
+              style="
+                width: 100%;
+                height: 180px;
+                object-fit: cover;
+                border-radius: 8px;
+                margin-bottom: 10px;
+              "
+            />
+            <h3 style="margin: 0 0 5px 0; font-size: 18px">
+              Club Himalaya Resort
+            </h3>
+            <p style="margin: 0; font-size: 16px">Booked at NPR 15,000</p>
+          </div>
+        </div>
+      </section>
+    </div>
+    <footer class="main-footer">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <h3>ExploreEra 🌏</h3>
+        </div>
+
+        <div class="footer-links">
+          <a href="aboutus.html">About</a>
+          <a href="services.html">Services</a>
+          <a href="contact.html">Contact</a>
+          <a href="privacy_safety_rules.html" target="_blank">
+            Privacy & Safety
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 ExploreEra. All rights reserved.</p>
+    </div>
+    <!-- Footer CSS -->
+    <style>
+      footer {
+        background-color: #222;
+        color: #fff;
+        padding: 40px 0 20px;
+        font-family: "Poppins", sans-serif;
+      }
+
+      .footer-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        max-width: 1200px;
+        height: 10px;
+        margin: auto;
+      }
+
+      .footer-section {
+        flex: 1 1 200px;
+        margin: 10px;
+      }
+
+      .footer-section h3 {
+        margin-bottom: 15px;
+        font-size: 18px;
+        color: #ff9800;
+      }
+
+      .footer-section ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .footer-section ul li {
+        margin-bottom: 10px;
+      }
+
+      .footer-section ul li a {
+        color: #fff;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .footer-section ul li a:hover {
+        color: #ff9800;
+      }
+    </style>
+  </body>
+</html>

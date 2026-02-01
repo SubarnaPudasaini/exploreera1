@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>ExploreEarth — Find Nearby Hotels & Restaurants</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background: #f4f4f4;
+      }
+      header {
+        background: #2b7cff;
+        color: white;
+        padding: 14px 18px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      header a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+      }
+      .container {
+        max-width: 1100px;
+        margin: 20px auto;
+        padding: 0 16px;
+      }
+      .search-row {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 12px;
+      }
+      input[type="text"] {
+        flex: 1;
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+      }
+      button {
+        padding: 12px 16px;
+        border-radius: 8px;
+        border: none;
+        background: #2b7cff;
+        color: white;
+        cursor: pointer;
+      }
+      #results {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 12px;
+      }
+      .card {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+      .card img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+      }
+      .card-body {
+        padding: 12px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .title-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+      }
+      .name {
+        font-weight: 700;
+        font-size: 16px;
+      }
+      .rating {
+        color: #ff9800;
+        font-weight: 700;
+      }
+      .meta {
+        font-size: 13px;
+        color: #666;
+      }
+      .btn-row {
+        display: flex;
+        gap: 8px;
+        margin-top: auto;
+      }
+      .btn {
+        padding: 8px 10px;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+      }
+      .details-btn {
+        background: #28a745;
+        color: white;
+      }
+      .book-btn {
+        background: #ff6f61;
+        color: white;
+      }
+      footer {
+        text-align: center;
+        color: #666;
+        margin: 22px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a href="/mnt/data/homepage.html">← ExploreEarth Home</a>
+      <div style="flex: 1"></div>
+      <div>Find hotels & restaurants near any place in Nepal</div>
+    </header>
+
+    <div class="container">
+      <div class="search-row">
+        <input
+          id="autocomplete-input"
+          type="text"
+          placeholder="Type a location (e.g., Pokhara, Lakeside or Thamel, Kathmandu)"
+        />
+        <select id="typeSelect" title="Select category">
+          <option value="restaurant">Restaurants</option>
+          <option value="lodging">Hotels</option>
+          <option value="restaurant|lodging">Both</option>
+        </select>
+        <button id="searchBtn">Search</button>
+      </div>
+
+      <div id="results"></div>
+
+      <div id="map" style="display: none; height: 0"></div>
+      <footer>
+        Powered by Google Places • Replace <code>YOUR_GOOGLE_API_KEY</code> in
+        the script tag
+      </footer>
+    </div>
+
+    <!-- Google Maps + Places library. IMPORTANT: replace YOUR_GOOGLE_API_KEY -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_API_KEY&libraries=places"></script>
+
+    <script>
+      let map;
+      let placesService;
+      let autocomplete;
+      const resultsDiv = document.getElementById("results");
+      const input = document.getElementById("autocomplete-input");
+
+      function init() {
+        // Create a hidden map for PlacesService (it needs a map or div)
+        map = new google.maps.Map(document.getElementById("map"), {
+          center: { lat: 27.7172, lng: 85.324 },
+          zoom: 13,
+        });
+        placesService = new google.maps.places.PlacesService(map);
+
+        // Autocomplete restricted to Nepal
+        autocomplete = new google.maps.places.Autocomplete(input, {
+          componentRestrictions: { country: "np" },
+        });
+        autocomplete.setFields([
+          "geometry",
+          "formatted_address",
+          "name",
+          "place_id",
+        ]);
+      }
+
+      function showError(msg) {
+        resultsDiv.innerHTML =
+          '<p style="padding:12px;color:#b00020;">' + msg + "</p>";
+      }
+
+      function createCard(place, photoUrl, rating, address, shortReview) {
+        const div = document.createElement("div");
+        div.className = "card";
+        div.innerHTML = `
+        <img src="${photoUrl}" alt="${
+          place.name
+        }" onerror="this.src='https://via.placeholder.com/600x400?text=No+Image'">
+        <div class="card-body">
+          <div class="title-row">
+            <div class="name">${place.name}</div>
+            <div class="rating">${rating ? "⭐ " + rating : "No rating"}</div>
+          </div>
+          <div class="meta">${address || ""}</div>
+          <div class="meta">${shortReview ? '"' + shortReview + '"' : ""}</div>
+          <div class="btn-row">
+            <button class="btn details-btn" data-placeid="${
+              place.place_id
+            }">View Details</button>
+            <button class="btn book-btn" data-placeid="${
+              place.place_id
+            }">Book</button>
+          </div>
+        </div>
+      `;
+        // attach listeners
+        div.querySelector(".details-btn").addEventListener("click", () => {
+          window.location.href = `details.html?place_id=${place.place_id}`;
+        });
+        div.querySelector(".book-btn").addEventListener("click", () => {
+          window.location.href = `booking.html?place_id=${
+            place.place_id
+          }&name=${encodeURIComponent(place.name)}`;
+        });
+        return div;
+      }
+
+      // when user clicks Search
+      document
+        .getElementById("searchBtn")
+        .addEventListener("click", async () => {
+          const text = input.value.trim();
+          if (!text) {
+            showError("Please enter a location.");
+            return;
+          }
+
+          // Use AutocompleteService to get a place from the typed text (prefer exact place)
+          const acService = new google.maps.places.AutocompleteService();
+          acService.getPlacePredictions(
+            { input: text, componentRestrictions: { country: "np" } },
+            async (predictions, status) => {
+              if (
+                status !== google.maps.places.PlacesServiceStatus.OK ||
+                !predictions ||
+                predictions.length === 0
+              ) {
+                showError(
+                  "No matching location found. Try a nearby town, city, or place name in Nepal."
+                );
+                return;
+              }
+              // Choose first prediction for search center
+              const chosen = predictions[0];
+
+              // Request details for the chosen place to get geometry (lat/lng)
+              placesService.getDetails(
+                {
+                  placeId: chosen.place_id,
+                  fields: ["geometry", "formatted_address"],
+                },
+                (placeDetails, st2) => {
+                  if (
+                    st2 !== google.maps.places.PlacesServiceStatus.OK ||
+                    !placeDetails ||
+                    !placeDetails.geometry
+                  ) {
+                    showError("Could not determine the location coordinates.");
+                    return;
+                  }
+                  const center = placeDetails.geometry.location;
+                  performNearbySearch(center);
+                }
+              );
+            }
+          );
+        });
+
+      function performNearbySearch(center) {
+        resultsDiv.innerHTML =
+          '<p style="padding:12px">Searching nearby places...</p>';
+        const selectedType = document.getElementById("typeSelect").value; // e.g., 'restaurant' or 'lodging' or 'restaurant|lodging'
+        // radius in meters (adjust as you like)
+        const radius = 5000;
+
+        // If user selected both, do two searches and combine results
+        const typesToSearch = selectedType.split("|");
+
+        let allResults = [];
+        let pending = typesToSearch.length;
+        typesToSearch.forEach((t) => {
+          const request = {
+            location: center,
+            radius,
+            type: t,
+          };
+          placesService.nearbySearch(request, (places, status, pagination) => {
+            if (
+              status === google.maps.places.PlacesServiceStatus.OK &&
+              places
+            ) {
+              allResults = allResults.concat(places);
+            }
+            pending--;
+            if (pending === 0) {
+              if (allResults.length === 0) {
+                showError(
+                  "No hotels or restaurants found nearby. Try increasing radius or change the location."
+                );
+                return;
+              }
+              // show top 20 unique results
+              showResults(uniqueByPlaceId(allResults).slice(0, 20));
+            }
+          });
+        });
+      }
+
+      function uniqueByPlaceId(arr) {
+        const seen = new Set();
+        return arr.filter((p) => {
+          if (seen.has(p.place_id)) return false;
+          seen.add(p.place_id);
+          return true;
+        });
+      }
+
+      function showResults(places) {
+        resultsDiv.innerHTML = "";
+        // For each place, get details to fetch rating, photos and some reviews
+        places.forEach((place) => {
+          // lightweight detail request for rating & photos (fields control quota)
+          placesService.getDetails(
+            {
+              placeId: place.place_id,
+              fields: [
+                "name",
+                "rating",
+                "formatted_address",
+                "photos",
+                "reviews",
+                "place_id",
+              ],
+            },
+            (detail, status) => {
+              let photoUrl =
+                "https://via.placeholder.com/600x400?text=No+Image";
+              if (
+                status === google.maps.places.PlacesServiceStatus.OK &&
+                detail &&
+                detail.photos &&
+                detail.photos.length
+              ) {
+                photoUrl = detail.photos[0].getUrl({
+                  maxWidth: 800,
+                  maxHeight: 600,
+                });
+              }
+              const rating =
+                status === google.maps.places.PlacesServiceStatus.OK &&
+                detail &&
+                detail.rating
+                  ? detail.rating
+                  : place.rating || null;
+              const address =
+                status === google.maps.places.PlacesServiceStatus.OK &&
+                detail &&
+                detail.formatted_address
+                  ? detail.formatted_address
+                  : "";
+              const shortReview =
+                status === google.maps.places.PlacesServiceStatus.OK &&
+                detail &&
+                detail.reviews &&
+                detail.reviews[0]
+                  ? detail.reviews[0].text.substring(0, 120) + "..."
+                  : "";
+              const card = createCard(
+                place,
+                photoUrl,
+                rating,
+                address,
+                shortReview
+              );
+              resultsDiv.appendChild(card);
+            }
+          );
+        });
+      }
+
+      // init after maps loaded
+      window.init = init;
+      // If Maps script already loaded, call init
+      if (window.google && google.maps) init();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flight Bill</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        height: 100vh;
+        background: linear-gradient(135deg, #00d4ff, #006aff);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        animation: fadeIn 1s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .bill-box {
+        width: 480px;
+        padding: 30px;
+        background-color: #24292f;
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+        color: white;
+        animation: slide 0.8s ease;
+      }
+
+      @keyframes slide {
+        from {
+          transform: translateY(40px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      h2 {
+        text-align: center;
+        font-size: 30px;
+        color: #00d4ff;
+        margin-bottom: 20px;
+      }
+
+      .item {
+        font-size: 18px;
+        margin-bottom: 13px;
+      }
+
+      .price {
+        margin-top: 20px;
+        font-size: 24px;
+        font-weight: 600;
+        text-align: center;
+        background: white;
+        color: #006aff;
+        padding: 12px;
+        border-radius: 12px;
+        animation: glow 1.5s infinite alternate;
+      }
+
+      @keyframes glow {
+        from {
+          box-shadow: 0 0 10px white;
+        }
+        to {
+          box-shadow: 0 0 20px white;
+        }
+      }
+
+      a {
+        display: block;
+        text-align: center;
+        margin-top: 25px;
+        padding: 12px;
+        background: white;
+        color: #006aff;
+        border-radius: 10px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: 0.3s;
+      }
+
+      a:hover {
+        background: #006aff;
+        color: white;
+        box-shadow: 0 0 12px white;
+      }
+      #aa {
+        font-size: 25px;
+        color: rgb(236, 39, 39);
+      }
+      #cc {
+        font-size: 20px;
+        color: rgb(255, 255, 255);
+      }
+      #button2:hover {
+        background: #0056ff;
+        color: white;
+        transform: scale(1.05);
+        box-shadow: 0 0 15px white;
+      }
+      #button2 {
+        width: 100%;
+        padding: 14px;
+        font-size: 17px;
+        border: none;
+        border-radius: 10px;
+        margin-top: 10px;
+        background: rgb(245, 3, 3);
+        color: #000000;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.4s ease;
+      }
+      #button1 {
+        width: 100%;
+        padding: 14px;
+        font-size: 17px;
+        border: none;
+        border-radius: 10px;
+        margin-top: 10px;
+        background: rgb(3, 152, 245);
+        color: #000000;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.4s ease;
+      }
+      #button2:hover {
+        background: #f700ff;
+        color: white;
+        transform: scale(1.05);
+        box-shadow: 0 0 15px white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bill-box">
+      <p id="aa">
+        <b>
+          "Thank you! Your request has been received. We will send your flight
+          confirmation and all relevant details to your registered email within
+          24 hours." ✅</b
+        >
+      </p>
+      <br /><br />
+      <p id="cc"><b>You can pay after booking the flight.</b></p>
+      <br />
+      <h2>Your Flight Bill ✈️</h2>
+
+      <div class="item" id="from"></div>
+      <div class="item" id="to"></div>
+      <div class="item" id="date"></div>
+      <div class="item" id="passenger"></div>
+
+      <div class="price" id="price"></div>
+
+      <a href="flight.html">Another Flight</a>
+      <a href="homepage.html">Back</a>
+    </div>
+
+    <script>
+      const url = new URLSearchParams(window.location.search);
+
+      const from = url.get("from");
+      const to = url.get("to");
+      const date = url.get("date");
+      const passengers = parseInt(url.get("passengers"));
+
+      const ticketPrice = 20000 * passengers;
+
+      document.getElementById("from").innerHTML = "From: <b>" + from + "</b>";
+      document.getElementById("to").innerHTML = "To: <b>" + to + "</b>";
+      document.getElementById("date").innerHTML = "Date: <b>" + date + "</b>";
+      document.getElementById("passenger").innerHTML =
+        "Passengers: <b>" + passengers + "</b>";
+
+      document.getElementById("price").innerHTML =
+        "Total Price: Rs." + ticketPrice;
+    </script>
+  </body>
+</html>

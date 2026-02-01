@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ExploreEra-ContactUs</title>
+    <link rel="stylesheet" href="contact.css" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <div id="div.abc">
+      <nav>
+        <h1 id="a">
+          <a href="homepage.html" id="b">ExploreEra 🌏</a>
+        </h1>
+        <ul>
+          <a class="b" href="homepage.html"><li>Home</li></a>
+          <a class="b" href="aboutus.html"><li>About</li></a>
+          <a class="b" href="services.html"><li>Services</li></a>
+          <a class="b actions" href="contact.html"><li>Contact Us</li></a>
+        </ul>
+        <a href="userprofile.html" id="profileLink" title="Profile">
+          <img
+            id="profileImg"
+            src="https://cdn-icons-png.flaticon.com/512/847/847969.png"
+            alt="Profile"
+            class="logo"
+          />
+        </a>
+      </nav>
+    </div>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+      <h2>Contact Us</h2>
+      <p>
+        Choose your preferred way to get in touch with us or tell about bug or
+        error if you find:
+      </p>
+
+      <div class="contact-cards">
+        <!-- Facebook Card -->
+        <div class="contact-card facebook">
+          <a href="https://www.facebook.com/share/15ppCase8L/" target="_blank">
+            <img src="facebook.svg" alt="Facebook" />
+            <span>Facebook</span>
+          </a>
+        </div>
+
+        <!-- GitHub Card -->
+        <div class="contact-card github">
+          <a href="https://github.com/SubarnaPudasaini" target="_blank">
+            <img src="github.svg" alt="GitHub" />
+            <span>GitHub</span>
+          </a>
+        </div>
+
+        <!-- Instagram Card -->
+        <div class="contact-card instagram">
+          <a
+            href="https://www.instagram.com/invites/contact/?igsh=q10t87y78v5a&utm_content=xc27ads"
+            target="_blank"
+          >
+            <img src="instagram.svg" alt="Instagram" />
+            <span>Instagram</span>
+          </a>
+        </div>
+
+        <!-- Gmail Card -->
+        <div class="contact-card gmail">
+          <a href="mailto:subarnapudasaini46.email@gmail.com">
+            <img src="gmail_logo.png" alt="Gmail" />
+            <span>Gmail</span>
+          </a>
+        </div>
+      </div>
+    </section>
+    <script>
+      const user = JSON.parse(localStorage.getItem("loggedInUser"));
+      const profileImg = document.getElementById("profileImg");
+      const profileLink = document.getElementById("profileLink");
+
+      if (user) {
+        if (user.avatar) profileImg.src = user.avatar;
+        if (user.username) profileLink.title = user.username; // dynamic tooltip
+      }
+    </script>
+    <div class="footer-bottom">
+      <p>&copy; 2025 ExploreEra. All rights reserved.</p>
+    </div>
+    <!-- Footer CSS -->
+    <style>
+      footer {
+        background-color: #222;
+        color: #fff;
+        padding: 40px 0 20px;
+        font-family: "Poppins", sans-serif;
+      }
+
+      .footer-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        max-width: 1200px;
+        margin: auto;
+      }
+
+      .footer-section {
+        flex: 1 1 200px;
+        margin: 10px;
+      }
+
+      .footer-section h3 {
+        margin-bottom: 15px;
+        font-size: 18px;
+        color: #ff9800;
+      }
+
+      .footer-section ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .footer-section ul li {
+        margin-bottom: 10px;
+      }
+
+      .footer-section ul li a {
+        color: #fff;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .footer-section ul li a:hover {
+        color: #ff9800;
+      }
+    </style>
+  </body>
+</html>
